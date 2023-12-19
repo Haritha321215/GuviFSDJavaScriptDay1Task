@@ -1,0 +1,106 @@
+1. Write a blog on Difference between HTTP1.1 vs HTTP2
+
+HTTP stands for hypertext transfer protocol, and it is the basis for almost all web applications. 
+when someone navigates to a website on their laptop, their web browser sends an HTTP request to the website servers for the content that appears on the page. Then, website servers send HTTP responses with the text, images, and formatting that the browser displays to the user.
+
+The first usable version of HTTP was created in 1997. The first version of HTTP was called HTTP/1.1. This version is still in use on the web. 
+
+In 2015, a new version of HTTP called HTTP/2 was created. HTTP/2 solves several problems that the creators of HTTP/1.1 did not anticipate. In particular, HTTP/2 is much faster and more efficient than HTTP/1.1. The differences between HTTP1.1 and HTTP2 are
+
+Multiplexing: HTTP/1.1 loads resources one after the other, so if one resource cannot be loaded, it blocks all the other resources behind it. 
+In contrast, HTTP/2 is able to use a single TCP connection to send multiple streams of data at once so that no one resource blocks any other resource. HTTP/2 does this by splitting data into binary-code messages and numbering these messages so that the client knows which stream each binary message belongs to.
+
+Server push: Typically, a server only serves content to a client device if the client asks for it. However, this approach is not always practical for modern webpages, which often involve several dozen separate resources that the client must request. HTTP/2 solves this problem by allowing a server to "push" content to a client before the client asks for it. The server also sends a message letting the client know what pushed content to expect – like if an author had sent reader a Table of Contents of his novel before sending the whole thing.
+
+Header compression: Small files load more quickly than large ones. To speed up web performance, both HTTP/1.1 and HTTP/2 compress HTTP messages to make them smaller. However, HTTP/2 uses a more advanced compression method called HPACK that eliminates redundant information in HTTP header packets. This eliminates a few bytes from every HTTP packet. Given the volume of HTTP packets involved in loading even a single webpage, those bytes add up quickly, resulting in faster loading.
+
+ 
+
+2. Write a blog about objects and its internal representation in Java script
+
+Objects, in JavaScript, an unordered collection of related data, of primitive or reference types, in the form of “key: value” pairs. These keys can be variables or functions and are called properties and methods, respectively, in the context of an object. 
+Objects are more complex and each object may contain any combination of these primitive data-types as well as reference data-types.
+An object, is a reference data type. Variables that are assigned a reference value are given a reference or a pointer to that value. That reference or pointer points to the location in memory where the object is stored. The variables don’t actually store the value.
+For Eg. If your object is a student, it will have properties like name, age, address, id, etc and methods like updateAddress(), updateName(), etc.
+
+var student = new Object();
+student.name = 'abcd';
+student.age = 12;
+student.address = 'address line1';
+Student,id = 101
+
+Objects are sometimes called associative arrays, since each property is associated with a string value that can be used to access it. So, for example, we can access the properties of the Student object as follows:
+Student['make'] = 'Ford';
+Student['model'] = 'Mustang';
+Student['year'] = 1969;
+
+One of easiest way to create a javascript object is object literal, simply define the property and values inside curly braces as shown below
+let bike = {name: 'SuperSport', maker:'Ducati', engine:'937cc'};
+
+Constructor is nothing but a function and with help of new keyword, constructor function allows to create multiple objects of same flavor as shown below
+function Vehicle(name, maker) {
+this.name = name;
+this.maker = maker;
+}
+let car1 = new Vehicle(’Fiesta’, 'Ford’);
+let car2 = new Vehicle(’Santa Fe’, 'Hyundai’)
+console.log(car1.name);    //Output: Fiesta
+console.log(car2.name);    //Output: Santa Fe
+
+Using the Object.create method
+Objects can also be created using the Object.create() method. This method can be very useful, because it allows you to choose the prototype object for the object you want to create, without having to define a constructor function.
+
+// Animal properties and method encapsulation
+var Animal = {
+  type: 'Invertebrates', // Default value of properties
+  displayType: function() {  // Method which will display type of Animal
+    console.log(this.type);
+  }
+};
+// Create new animal type called animal1 
+var animal1 = Object.create(Animal);
+animal1.displayType(); // Output:Invertebrates
+// Create new animal type called Fishes
+var fish = Object.create(Animal);
+fish.type = 'Fishes';
+fish.displayType(); // Output:Fishes
+
+
+
+
+3. IP address, port, HTTP methods, MAC address
+
+IP address: An IP address is a unique address that identifies a device on the internet or a local network. IP stands for "Internet Protocol," which is the set of rules governing the format of data sent via the internet or local network.An IP address is a string of numbers separated by periods. IP addresses are expressed as a set of four numbers — an example address might be 192.158.1.38. Each number in the set can range from 0 to 255. So, the full IP addressing range goes from 0.0.0.0 to 255.255.255.255.
+
+Port: A port is a virtual point where network connections start and end. Ports are software-based and managed by a computer's operating system. Ports are standardized across all network-connected devices, with each port assigned a number. Most ports are reserved for certain protocols — for example, all Hypertext Transfer Protocol (HTTP) messages go to port 80. While IP addresses enable messages to go to and from specific devices, port numbers allow targeting of specific services or applications within those devices.
+
+HTTP methods:
+HTTP methods enable API clients to perform CRUD (Create, Read, Update, and Delete) actions on an API’s resources in a standardized and predictable way. The most commonly used HTTP methods are:
+
+The GET method is used to retrieve data on a server. Clients can use the GET method to access all of the resources of a given type, or they can use it to access a specific resource. For instance, a GET request to the /products endpoint of an e-commerce API would return all of the products in the database, while a GET request to the /products/123 endpoint would return the specific product with an ID of 123. GET requests typically do not include a request body, as the client is not attempting to create or update data.
+
+POST
+The POST method is used to create new resources. For instance, if the manager of an e-commerce store wanted to add a new product to the database, they would send a POST request to the /products endpoint. Unlike GET requests, POST requests typically include a request body, which is where the client specifies the attributes of the resource to be created. For example, a POST request to the /products endpoint might have a request body that looks like this:
+
+{
+  "name": "Sneakers",
+  "color": "blue",
+  "price": 59.95,
+  "currency": "USD"
+}
+
+PUT
+The PUT method is used to replace an existing resource with an updated version. This method works by replacing the entire resource (i.e., the specific product located at the /products/123 endpoint) with the data that is included in the request’s body. This means that any fields or properties not included in the request body are deleted, and any new fields or properties are added.
+
+PATCH
+The PATCH method is used to update an existing resource. It is similar to PUT, except that PATCH enables clients to update specific properties on a resource—without overwriting the others. For instance, if you have a product resource with fields for name, brand, and price, but you only want to update the price, you could use the PATCH method to send a request that only includes the new value for the price field. The rest of the resource would remain unchanged. This behavior makes the PATCH method more flexible and efficient than PUT.
+
+DELETE
+The DELETE method is used to remove data from a database. When a client sends a DELETE request, it is requesting that the resource at the specified URL be removed. For example, a DELETE request to the /products/123 endpoint will permanently remove the product with an ID of 123 from the database. Some APIs may leverage authorization mechanisms to ensure that only clients with the appropriate permissions are able to delete resources.
+
+MAC address:
+Just like each house has it's own postal address, every device connected on a network has a Media Access Control (MAC) address, that uniquely identifies it.
+The MAC address is tied to the Network Interface Controller (NIC), a subcomponent of the larger device. The NIC is where you make your physical connection to the network, by plugging in an Ethernet cable or connecting to a WiFi signal.
+The MAC address is a 12 digit hexadecimal number that is most often displayed with a colon or hypen separating every two digits (an octet), making it easier to read.
+
+Example: A MAC address of 2c549188c9e3 is typically displayed as 2C:54:91:88:C9:E3 or 2c-54-91-88-c9-e3.
